@@ -23,6 +23,36 @@ const clues = {
 	},
 }
 
+// GALA, EBAY, MUTED, ZHAO, ZERO
+// GEM, ABUZZ, LATHE, AYEAR, DOO
+const answers = [
+	'G',
+	'A',
+	'L',
+	'A',
+	'',
+	'E',
+	'B',
+	'A',
+	'Y',
+	'',
+	'M',
+	'U',
+	'T',
+	'E',
+	'D',
+	'',
+	'Z',
+	'H',
+	'A',
+	'O',
+	'',
+	'Z',
+	'E',
+	'R',
+	'O',
+]
+
 function App() {
 	return (
 		<div className='app'>
@@ -35,7 +65,7 @@ function App() {
 				<div className='board-and-clues'>
 					<div>
 						<ActiveClue />
-						<Board />
+						<Board answers={answers} />
 					</div>
 					<div>
 						<CluesList direction='Across' list={clues.across} />
