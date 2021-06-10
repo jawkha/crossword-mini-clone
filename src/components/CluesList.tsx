@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styles from './../styles/CluesList.module.css'
 
 interface ICluesListProps {
 	direction: 'Across' | 'Down'
@@ -12,8 +13,8 @@ function listItems(obj: ICluesListProps['list']) {
 export default function CluesList(prop: ICluesListProps) {
 	const { direction, list } = prop
 	return (
-		<div>
-			<h3>{direction}</h3>
+		<div className={styles.list}>
+			<h3>{direction.toUpperCase()}</h3>
 			{listItems(list)}
 		</div>
 	)
