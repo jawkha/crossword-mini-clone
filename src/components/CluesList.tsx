@@ -1,15 +1,15 @@
 import * as React from 'react'
 
-interface IDirection {
+interface ICluesListProps {
 	direction: 'Across' | 'Down'
 	list: {}
 }
 
-function listItems(obj: IDirection['list']) {
+function listItems(obj: ICluesListProps['list']) {
 	return Object.entries(obj).map(([key, value], index) => <p key={index}>{`${key} ${value}`}</p>)
 }
 
-export default function CluesList(prop: IDirection) {
+export default function CluesList(prop: ICluesListProps) {
 	const { direction, list } = prop
 	return (
 		<div>
