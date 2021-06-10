@@ -13,10 +13,15 @@ export default function Square(props: ISquareProps) {
 		setInput(e.target.value.toUpperCase())
 	}
 
+	function handleFocus(e: any) {
+		e.target.select()
+	}
+
 	return (
 		<input
 			value={input}
 			maxLength={1}
+			onFocus={handleFocus}
 			onChange={handleChange}
 			className={props.letter ? styles.square : styles.empty}
 		/>
