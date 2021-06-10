@@ -15,6 +15,11 @@ export default function Square(props: ISquareProps) {
 
 	function handleFocus(e: any) {
 		e.target.select()
+		e.target.style.backgroundColor = 'rgb(252, 215, 49)'
+	}
+
+	function handleBlur(e: any) {
+		e.target.style.backgroundColor = 'white'
 	}
 
 	return (
@@ -22,6 +27,7 @@ export default function Square(props: ISquareProps) {
 			value={input}
 			maxLength={1}
 			onFocus={handleFocus}
+			onBlur={handleBlur}
 			onChange={handleChange}
 			className={props.letter ? styles.square : styles.empty}
 		/>
