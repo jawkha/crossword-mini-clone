@@ -4,7 +4,7 @@ import Options from './components/Options'
 import ActiveClue from './components/ActiveClue'
 import Board from './components/Board'
 import CluesList from './components/CluesList'
-import { clues, answers } from './data/puzzle-1'
+import { clues, answers } from './data/puzzle-2'
 import './App.css'
 
 function App() {

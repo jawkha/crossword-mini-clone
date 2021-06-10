@@ -8,7 +8,7 @@ interface IBoardProps {
 
 export default function Board(props: IBoardProps) {
 	function renderGrid() {
-		// return [...Array(25)].map((el, index) => <Square key={index} />)
+		// return [...Array(25)].map((letter, index) => <Square key={index} letter={letter} />)
 		return props.answers.map((letter, index) => <Square key={index} letter={letter} />)
 	}
 

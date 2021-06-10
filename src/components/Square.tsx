@@ -6,10 +6,10 @@ interface ISquareProps {
 }
 
 export default function Square(props: ISquareProps) {
-	const [input, setInput] = React.useState(props.letter)
+	const [answer, setAnswer] = React.useState(props.letter)
+	const [input, setInput] = React.useState('')
 
 	function handleChange(e: any) {
-		console.log(e.target.value)
 		setInput(e.target.value.toUpperCase())
 	}
 
