@@ -6,5 +6,19 @@ interface ISquareProps {
 }
 
 export default function Square(props: ISquareProps) {
-	return <div className={props.letter ? styles.square : styles.empty}>{props.letter}</div>
+	const [input, setInput] = React.useState(props.letter)
+
+	function handleChange(e: any) {
+		console.log(e.target.value)
+		setInput(e.target.value.toUpperCase())
+	}
+
+	return (
+		<input
+			value={input}
+			maxLength={1}
+			onChange={handleChange}
+			className={props.letter ? styles.square : styles.empty}
+		/>
+	)
 }
