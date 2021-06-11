@@ -9,6 +9,36 @@ import './App.css'
 
 function App() {
 	const [state, setState] = React.useState(puzzleData)
+	const [direction, setDirection] = React.useState('across')
+
+	function toggleBetweenAcrossAndDown() {
+		direction === 'across' ? setDirection('down') : setDirection('across')
+	}
+
+	function handleClickInsideSquare(id: number) {
+		const stateCopy = state
+		const elementIndex = stateCopy.findIndex(el => el.id === id)
+		if (stateCopy[elementIndex].isActiveCell) {
+			toggleBetweenAcrossAndDown()
+		}
+
+		if (stateCopy[elementIndex].isActiveCell === false) {
+			stateCopy[elementIndex].isActiveCell = true
+		}
+	}
+
+	function handleChange(e: any) {
+		// setInput(e.target.value.toUpperCase())
+	}
+
+	function handleFocus(e: any) {
+		e.target.select()
+		e.target.style.backgroundColor = 'rgb(252, 215, 49)'
+	}
+
+	function handleBlur(e: any) {
+		e.target.style.backgroundColor = 'white'
+	}
 
 	return (
 		<div className='app'>
