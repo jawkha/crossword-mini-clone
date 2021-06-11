@@ -4,10 +4,12 @@ import Options from './components/Options'
 import ActiveClue from './components/ActiveClue'
 import Board from './components/Board'
 import CluesList from './components/CluesList'
-import { clues, answers } from './data/puzzle-2'
+import { clues, answers, puzzleData } from './data/puzzle-2'
 import './App.css'
 
 function App() {
+	const [state, setState] = React.useState(puzzleData)
+
 	return (
 		<div className='app'>
 			<div className='container'>
@@ -19,7 +21,7 @@ function App() {
 				<div className='board-and-clues'>
 					<div>
 						<ActiveClue />
-						<Board answers={answers} />
+						<Board puzzleData={puzzleData} />
 					</div>
 					<div>
 						<CluesList direction='Across' list={clues.across} />

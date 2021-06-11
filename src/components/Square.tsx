@@ -2,7 +2,7 @@ import * as React from 'react'
 import styles from './../styles/Square.module.css'
 
 interface ISquareProps {
-	letter: string
+	letter: string | null
 }
 
 export default function Square(props: ISquareProps) {
