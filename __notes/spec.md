@@ -1,12 +1,15 @@
 **Timer**
+
 - A timer starts running in increments of one second as the game starts.
 - The game can be paused and resumed.
 
 **Active Clue Row**
-- Below the timer is another row where the clue for the current active word is given with a light blue background.
 
-**Layout**
-***Board***
+- Below the timer is another row where the clue for the current active word is given with a light
+  blue background.
+
+**Layout** **_Board_**
+
 - The crossword board is always made up of 5 x 5 cells.
 - The cells which don't need to be filled are filled black.
 - When the game starts, the first cell for 1 across is in focus.
@@ -16,5 +19,6 @@
 - Any character on the keyboard can be input into the cells.
 - Clicking on a cell toggles between across and down directions.
 
-***Clues***
-- The clues for are given in numbered lists with the ones for across above those for down.
+**_Clues_**
+
+- The clues for words are given in numbered lists with the ones for across above those for down.
