@@ -2,7 +2,21 @@ import * as React from 'react'
 import styles from './../styles/Square.module.css'
 
 interface ISquareProps {
-	letter: string | null
+	square: {
+		id: number
+		rowNumber: number
+		columnNumber: number
+		isFirstLetterInWord: boolean
+		clueNumber: number | null
+		across: string | null
+		down: string | null
+		isActiveCell: boolean
+		answer: string | null
+		userInput: string | null
+	}
+	handleClickInsideSquare(id: number): void
+	handleFocusOnSquare(e: any, id: number): void
+	handleBlurOnSquare(e: any): void
 }
 
 export default function Square(props: ISquareProps) {
@@ -11,10 +25,11 @@ export default function Square(props: ISquareProps) {
 			type='text'
 			value=''
 			maxLength={1}
-			onFocus={() => {}}
-			onBlur={() => {}}
+			onFocus={e => props.handleFocusOnSquare(e, props.square.id)}
+			onBlur={props.handleBlurOnSquare}
+			onClick={() => props.handleClickInsideSquare(props.square.id)}
 			onChange={() => {}}
-			className={props.letter ? styles.square : styles.empty}
+			className={props.square.answer ? styles.square : styles.empty}
 		/>
 	)
 }

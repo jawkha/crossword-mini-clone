@@ -4,39 +4,67 @@ import Options from './components/Options'
 import ActiveClue from './components/ActiveClue'
 import Board from './components/Board'
 import CluesList from './components/CluesList'
-import { clues, answers, puzzleData } from './data/puzzle-2'
+import { clues, puzzleData } from './data/puzzle-2-obj'
 import './App.css'
 
+export interface IPuzzleDataItem {
+	id: number
+	rowNumber: number
+	columnNumber: number
+	isFirstLetterInWord: boolean
+	clueNumber: number | null
+	across: string | null
+	down: string | null
+	isActiveCell: boolean
+	answer: string | null
+	userInput: string | null
+}
+
+export interface IPuzzleData {
+	[key: number]: IPuzzleDataItem
+}
+
 function App() {
-	const [state, setState] = React.useState(puzzleData)
-	const [direction, setDirection] = React.useState('across')
+	const [data, setData] = React.useState(puzzleData as IPuzzleData)
+	const [time, setTime] = React.useState()
+	const [direction, setDirection] = React.useState<'across' | 'down'>('across')
+	const [currentActiveSquare, setCurrentActiveSquare] = React.useState<number>(1)
+	const [currentActiveClue, setCurrentActiveClue] = React.useState(
+		data[currentActiveSquare][direction]
+	)
+
+	// const setCurrentActiveClue = () => state[currentActiveSquare][direction]
+	const setActiveClue = () => {
+		if (data[currentActiveSquare]) {
+			setCurrentActiveClue(data[currentActiveSquare][direction])
+		}
+	}
 
 	function toggleBetweenAcrossAndDown() {
 		direction === 'across' ? setDirection('down') : setDirection('across')
 	}
 
 	function handleClickInsideSquare(id: number) {
-		const stateCopy = state
-		const elementIndex = stateCopy.findIndex(el => el.id === id)
-		if (stateCopy[elementIndex].isActiveCell) {
+		console.log('click event')
+		if (id === currentActiveSquare) {
 			toggleBetweenAcrossAndDown()
-		}
-
-		if (stateCopy[elementIndex].isActiveCell === false) {
-			stateCopy[elementIndex].isActiveCell = true
+			setActiveClue()
 		}
 	}
 
-	function handleChange(e: any) {
+	function handleChangeInsideSquare(e: any) {
 		// setInput(e.target.value.toUpperCase())
 	}
 
-	function handleFocus(e: any) {
+	function handleFocusOnSquare(e: any, id: number) {
+		console.log('focus event')
 		e.target.select()
 		e.target.style.backgroundColor = 'rgb(252, 215, 49)'
+		setCurrentActiveSquare(id)
+		// setActiveClue()
 	}
 
-	function handleBlur(e: any) {
+	function handleBlurOnSquare(e: any) {
 		e.target.style.backgroundColor = 'white'
 	}
 
@@ -50,8 +78,13 @@ function App() {
 				</div>
 				<div className='board-and-clues'>
 					<div>
-						<ActiveClue />
-						<Board puzzleData={puzzleData} />
+						<ActiveClue currentActiveClue={currentActiveClue} />
+						<Board
+							puzzle={data}
+							handleClickInsideSquare={handleClickInsideSquare}
+							handleFocusOnSquare={handleFocusOnSquare}
+							handleBlurOnSquare={handleBlurOnSquare}
+						/>
 					</div>
 					<div>
 						<CluesList direction='Across' list={clues.across} />
