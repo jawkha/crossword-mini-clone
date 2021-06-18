@@ -1,17 +1,21 @@
-.container {
-  padding: 2rem 5rem;
-  display: flex;
-  flex-direction: column;
+.app {
+	padding: 2rem 5rem;
+	display: flex;
+	flex-direction: column;
 }
 
-.timer-and-menu {
-  display: flex;
-  justify-content: flex-start;
-  align-items: baseline;
+.timer-and-options {
+	display: flex;
+	justify-content: flex-start;
+	align-items: baseline;
+}
+
+.timer {
+	padding-left: 5rem;
 }
 
 .board-and-clues {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: baseline;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: baseline;
 }
