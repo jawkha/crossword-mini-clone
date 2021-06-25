@@ -9,3 +9,15 @@ services:
     volumes:
       - /app/node_modules
       - ./:/app/
+  cypress:
+    # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
+    image: 'cypress/included:7.6.0'
+    depends_on:
+      - crossword
+    working_dir: /e2e
+    environment:
+      # pass base url to test pointing at the web application
+      - CYPRESS_baseUrl=http://crossword:3000
+    # share the current folder as volume to avoid copying
+    volumes:
+      - ./e2e:/e2e
