@@ -1,5 +1,5 @@
 .board {
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	margin: 0 2rem 0 0;
+	grid-template-columns: repeat(5, 5rem);
+	margin-right: 3rem;
 }
