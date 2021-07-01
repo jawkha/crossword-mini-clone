@@ -5,11 +5,11 @@ describe('app renders on the screen', () => {
 
 	it('h1 is visible on the screen', () => {
 		cy.visit('/')
-		cy.get('.app').contains('The Mini Crossword')
+		cy.get('h1').contains('The Mini Crossword')
 	})
 
 	it('Game options are visible on the screen', () => {
 		cy.visit('/')
-		cy.get('.app').contains('Rebus')
+		cy.get('ul').contains('Rebus')
 	})
 })
