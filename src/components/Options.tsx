@@ -3,11 +3,11 @@ import styles from './../styles/Options.module.css'
 
 export default function Options() {
 	return (
-		<div className={styles.options}>
-			<div className={styles.item}>Rebus</div>
-			<div className={styles.item}>Clear</div>
-			<div className={styles.item}>Reveal</div>
-			<div className={styles.item}>Check</div>
-		</div>
+		<ul className={styles.options}>
+			<li className={styles.item}>Rebus</li>
+			<li className={styles.item}>Clear</li>
+			<li className={styles.item}>Reveal</li>
+			<li className={styles.item}>Check</li>
+		</ul>
 	)
 }
