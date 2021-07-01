@@ -1,27 +1,32 @@
 export interface SquareData {
 	row: number
 	column: number
-	clueAcross: number
-	clueDown: number
-	answer: string
+	clueAcross: number | null
+	clueDown: number | null
+	displayedNumber: number | null
+	answer: string | null
 	guess: string
 }
 
-export interface PuzzleData {
-	[key: number]: SquareData
-}
+export type PuzzleData = SquareData[]
 
 export interface BoardProps {
-	gridSize: number
+	puzzleData: PuzzleData
+	activeSquareIndex: number
+}
+
+export interface SquareProps {
+	squareData: SquareData
+	isActive: boolean
 }
 
 export interface CluesProps {
 	clues: {
 		across: {
-			[key: number]: string
+			[key: string]: string
 		}
 		down: {
-			[key: number]: string
+			[key: string]: string
 		}
 	}
 }
