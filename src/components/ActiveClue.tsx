@@ -1,5 +1,5 @@
 import * as React from 'react'
 
-export default function ActiveClue() {
-	return <div>currentActiveClue</div>
+export default function ActiveClue(props: { activeClue: string }) {
+	return <div>{props.activeClue}</div>
 }

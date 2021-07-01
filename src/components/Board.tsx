@@ -1,11 +1,12 @@
 import * as React from 'react'
 import Square from './Square'
+import { BoardProps } from './../interfaces'
 import styles from './../styles/Board.module.css'
 
-export default function Board() {
+export default function Board({ puzzleData, activeSquareIndex }: BoardProps) {
 	function renderGrid() {
-		// return [...Array(25)].map((letter, index) => <Square key={index} letter={letter} />)
-		return Object.values([]).map(el => <Square />)
+		return puzzleData.map((squareData, index) => <Square key={index} squareData={squareData} isActive={index === activeSquareIndex} />)
+		// return Object.values([]).map(el => <Square />)
 	}
 
 	return <div className={styles.board}>{renderGrid()}</div>
