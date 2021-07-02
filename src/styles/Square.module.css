@@ -19,6 +19,11 @@
 	font-size: 3rem;
 }
 
+.highlighted {
+	composes: fillable;
+	background-color: rgba(14, 111, 248, 0.4);
+}
+
 .unfillable {
 	composes: square;
 	background-color: black;

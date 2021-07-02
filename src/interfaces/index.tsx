@@ -20,6 +20,8 @@ export interface SquareProps {
 	squareData: SquareData
 	isActive: boolean
 	activeDirection: 'across' | 'down'
+	highlightableRow: number
+	highlightableColumn: number
 }
 
 export interface CluesProps {
