@@ -13,11 +13,13 @@ export type PuzzleData = SquareData[]
 export interface BoardProps {
 	puzzleData: PuzzleData
 	activeSquareIndex: number
+	activeDirection: 'across' | 'down'
 }
 
 export interface SquareProps {
 	squareData: SquareData
 	isActive: boolean
+	activeDirection: 'across' | 'down'
 }
 
 export interface CluesProps {

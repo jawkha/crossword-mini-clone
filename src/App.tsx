@@ -98,13 +98,13 @@ the resume button in the modal is clicked, the modal is removed and the timer re
 
 export default function App() {
 	// To identify the first active square, we need to find the index of the first element in the array where answer is null.
-  const activeSquareIndex = puzzleData.findIndex(squareData => squareData.answer !== null)
-  console.log({activeSquareIndex})
+	const activeSquareIndex = puzzleData.findIndex(squareData => squareData.answer !== null)
+	console.log({ activeSquareIndex })
 	const [activeSquare, setActiveSquare] = React.useState(puzzleData[activeSquareIndex])
 	// If the direction is across, the row and its associated clue will be highlighted. If down, then column.
-	const [activeDirection, setActiveDirection] = React.useState('across')
+	const [activeDirection, setActiveDirection] = React.useState<'across' | 'down'>('across')
 	// First we will extract the active clue number from puzzleData based on the activeSquare and activeDirection, and then we will use this number to get the string from the clues object.
-	const [activeClue, setActiveClue] = React.useState(clues.across[1])
+	const [activeClue, setActiveClue] = React.useState(clues[activeDirection][1])
 	const [userAnswers, setUserAnswers] = React.useState<string[]>([...Array(puzzleData.length)])
 
 	return (
@@ -117,7 +117,11 @@ export default function App() {
 			<div className={styles['board-and-clues']}>
 				<div>
 					<ActiveClue activeClue={activeClue} />
-					<Board puzzleData={puzzleData} activeSquareIndex={activeSquareIndex} />
+					<Board
+						puzzleData={puzzleData}
+						activeSquareIndex={activeSquareIndex}
+						activeDirection={activeDirection}
+					/>
 				</div>
 				<div>
 					<Clues clues={clues} />
