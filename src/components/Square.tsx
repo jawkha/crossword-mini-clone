@@ -20,13 +20,13 @@ export default function Square({
 				onBlur={() => {}}
 				onClick={() => {}}
 				onChange={() => {}}
-				className={`${isActive ? styles.active : null} ${
+				className={`${styles.input} ${isActive ? styles.active : ''} ${
 					squareData.answer ? styles.fillable : styles.unfillable
 				} ${
 					(activeDirection === 'across' && squareData.row === highlightableRow) ||
 					(activeDirection === 'down' && squareData.column === highlightableColumn)
 						? styles.highlighted
-						: null
+						: ''
 				}`}
 			/>
 		</div>
