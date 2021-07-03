@@ -124,7 +124,7 @@ export default function App() {
 					/>
 				</div>
 				<div>
-					<Clues clues={clues} />
+					<Clues clues={clues} activeClue={activeClue} activeSquare={activeSquare} />
 				</div>
 			</div>
 		</div>

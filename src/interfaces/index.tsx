@@ -33,11 +33,15 @@ export interface CluesProps {
 			[key: string]: string
 		}
 	}
+	activeClue: string
+	activeSquare: SquareData
 }
 
 export interface CluesListProps {
 	direction: string
 	directionalClues: {
-		[key: number]: string
+		[key: string]: string
 	}
+	activeClue: string
+	activeSquare: SquareData
 }

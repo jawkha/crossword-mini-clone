@@ -5,4 +5,14 @@
 
 .list p {
 	font-size: 0.9rem;
+	padding: 0.35rem;
+	margin: 0.2rem;
+}
+
+.highlighted-clue {
+	background-color: rgba(14, 111, 248, 0.4);
+}
+
+.highlighted-border {
+	border-left: 5px solid rgba(14, 111, 248, 0.4);
 }
