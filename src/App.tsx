@@ -106,12 +106,34 @@ export default function App() {
 	// First we will extract the active clue number from puzzleData based on the activeSquare and activeDirection, and then we will use this number to get the string from the clues object.
 	const [activeClue, setActiveClue] = React.useState(clues[activeDirection][1])
 	const [userAnswers, setUserAnswers] = React.useState<string[]>([...Array(puzzleData.length)])
+	const [timer, setTimer] = React.useState(0)
+
+	let timerId: NodeJS.Timeout
+
+	const pauseTimer = () => {
+		console.log('timer paused')
+		clearInterval(timerId)
+	}
+
+	const resumeTimer = () => {
+		timerId = setInterval(() => {
+			setTimer(timer + 1)
+		}, 1000)
+	}
+
+	React.useEffect(() => {
+		timerId = setInterval(() => {
+			setTimer(timer + 1)
+		}, 1000)
+		console.log(timerId)
+		return () => clearInterval(timerId)
+	})
 
 	return (
 		<div className={styles.app}>
 			<h1>The Mini Crossword</h1>
 			<div className={styles['timer-and-options']}>
-				<Timer />
+				<Timer timer={timer} pauseTimer={pauseTimer} resumeTimer={resumeTimer} />
 				<Options />
 			</div>
 			<div className={styles['board-and-clues']}>

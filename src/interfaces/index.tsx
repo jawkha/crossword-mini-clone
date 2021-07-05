@@ -45,3 +45,9 @@ export interface CluesListProps {
 	activeClue: string
 	activeSquare: SquareData
 }
+
+export interface TimerProps {
+	timer: number
+	pauseTimer: () => void
+	resumeTimer: () => void
+}
