@@ -2,6 +2,10 @@ import * as React from 'react'
 import { CluesListProps } from './../interfaces'
 import styles from './../styles/CluesList.module.css'
 
+/**
+ * TO DO: Implement highlighted left border for the relevant clue in the list
+ */
+
 export default function CluesList({
 	direction,
 	directionalClues,
@@ -11,12 +15,7 @@ export default function CluesList({
 	function listItems() {
 		return Object.entries(directionalClues).map(([key, value], index) => (
 			<p
-				className={`${value === activeClue ? styles['highlighted-clue'] : ''} ${
-					(direction === 'across' && activeSquare.clueDown?.toString() === key) ||
-					(direction === 'down' && activeSquare.clueAcross?.toString() === key)
-						? styles['highlighted-border']
-						: ''
-				}`}
+				className={`${value === activeClue ? styles['highlighted-clue'] : null}`}
 				key={index}>{`${key} ${value}`}</p>
 		))
 	}
