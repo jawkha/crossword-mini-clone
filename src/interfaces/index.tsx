@@ -1,8 +1,8 @@
 export interface SquareData {
 	row: number
 	column: number
-	clueAcross: number | null
-	clueDown: number | null
+	across: number | null
+	down: number | null
 	displayedNumber: number | null
 	answer: string | null
 	guess: string
@@ -14,6 +14,7 @@ export interface BoardProps {
 	puzzleData: PuzzleData
 	activeSquareIndex: number
 	activeDirection: 'across' | 'down'
+	toggleDirection: () => void
 }
 
 export interface SquareProps {
@@ -22,6 +23,7 @@ export interface SquareProps {
 	activeDirection: 'across' | 'down'
 	highlightableRow: number
 	highlightableColumn: number
+	toggleDirection: () => void
 }
 
 export interface CluesProps {

@@ -3,7 +3,12 @@ import Square from './Square'
 import { BoardProps } from './../interfaces'
 import styles from './../styles/Board.module.css'
 
-export default function Board({ puzzleData, activeSquareIndex, activeDirection }: BoardProps) {
+export default function Board({
+	puzzleData,
+	activeSquareIndex,
+	activeDirection,
+	toggleDirection,
+}: BoardProps) {
 	let highlightableRow: number
 	let highlightableColumn: number
 
@@ -28,6 +33,7 @@ export default function Board({ puzzleData, activeSquareIndex, activeDirection }
 				activeDirection={activeDirection}
 				highlightableRow={highlightableRow}
 				highlightableColumn={highlightableColumn}
+				toggleDirection={toggleDirection}
 			/>
 		))
 		// return Object.values([]).map(el => <Square />)

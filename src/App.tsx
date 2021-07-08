@@ -16,8 +16,7 @@ export default function App() {
 	// If the direction is across, the row and its associated clue will be highlighted. If down, then column.
 	const [activeDirection, setActiveDirection] = React.useState<'across' | 'down'>('across')
 	// First we will extract the active clue number from puzzleData based on the activeSquare and activeDirection, and then we will use this number to get the string from the clues object.
-	const directionalClue =
-		activeDirection === 'across' ? activeSquare['clueAcross'] : activeSquare['clueDown']
+	const [directionalClue, setDirectionalClue] = React.useState(activeSquare[activeDirection])
 	const [activeClue, setActiveClue] = React.useState(
 		(clues as CluesProps['clues'])[activeDirection][directionalClue!]
 	)
@@ -39,6 +38,11 @@ export default function App() {
 		}, 1000)
 	}
 
+	const toggleDirection = () => {
+		const newDirection = activeDirection === 'across' ? 'down' : 'across'
+		setActiveDirection(newDirection)
+	}
+
 	React.useEffect(() => {
 		timerId = setInterval(() => {
 			setTimer(timer + 1)
@@ -46,6 +50,11 @@ export default function App() {
 		console.log(timerId)
 		return () => clearInterval(timerId)
 	})
+
+	React.useEffect(() => {
+		setDirectionalClue(activeSquare[activeDirection])
+		setActiveClue((clues as CluesProps['clues'])[activeDirection][directionalClue!])
+	}, [activeDirection])
 
 	return (
 		<div className={styles.app}>
@@ -61,6 +70,7 @@ export default function App() {
 						puzzleData={puzzleData}
 						activeSquareIndex={activeSquareIndex}
 						activeDirection={activeDirection}
+						toggleDirection={toggleDirection}
 					/>
 				</div>
 				<div>
