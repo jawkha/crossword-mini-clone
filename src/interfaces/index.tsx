@@ -15,6 +15,7 @@ export interface BoardProps {
 	activeSquareIndex: number
 	activeDirection: 'across' | 'down'
 	toggleDirection: () => void
+	convertInactiveSquareToActiveSquare: (clickedSquare: SquareData) => void
 }
 
 export interface SquareProps {
@@ -24,6 +25,7 @@ export interface SquareProps {
 	highlightableRow: number
 	highlightableColumn: number
 	toggleDirection: () => void
+	convertInactiveSquareToActiveSquare: (clickedSquare: SquareData) => void
 }
 
 export interface CluesProps {
