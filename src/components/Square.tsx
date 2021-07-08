@@ -8,7 +8,14 @@ export default function Square({
 	activeDirection,
 	highlightableRow,
 	highlightableColumn,
+	toggleDirection,
 }: SquareProps) {
+	const handleClickInsideActiveSquare = () => toggleDirection()
+	const handleClickInsideInactiveSquare = () => {}
+
+	const handleClick = () =>
+		isActive ? handleClickInsideActiveSquare() : handleClickInsideInactiveSquare()
+
 	return (
 		<div className={`${styles.square}`}>
 			<span className={styles.number}>{squareData.displayedNumber}</span>
@@ -18,7 +25,7 @@ export default function Square({
 				autoFocus={isActive}
 				onFocus={() => {}}
 				onBlur={() => {}}
-				onClick={() => {}}
+				onClick={handleClick}
 				onChange={() => {}}
 				className={`${styles.input} ${isActive ? styles.active : ''} ${
 					squareData.answer ? styles.fillable : styles.unfillable
