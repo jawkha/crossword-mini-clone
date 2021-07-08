@@ -19,18 +19,18 @@ When the app loads, the following should happen:
 
 **click on the currently active square**
 
-- 🟩 the direction toggles between 'across' and 'down'
-- 🟩 based on the new active direction, the rest of the squares in the row or column switch to a
+- ✅ the direction toggles between 'across' and 'down'
+- ✅ based on the new active direction, the rest of the squares in the row or column switch to a
   light blue background.
-- 🟩 the active clue is also updated based on the new direction.
+- ✅ the active clue is also updated based on the new direction.
 
 **click on another square**
 
-- 🟩 the clicked square becomes active with yellow background.
-- 🟩 the active direction remains the same as before the click event and
-- 🟩 based on that direction, the remaining squares in the row or column containing the new active
+- ✅ the clicked square becomes active with yellow background.
+- ✅ the active direction remains the same as before the click event and
+- ✅ based on that direction, the remaining squares in the row or column containing the new active
   square switch to a light blue background.
-- 🟩 the active clue is also updated.
+- ✅ the active clue is also updated.
 
 **press a key**
 

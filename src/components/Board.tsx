@@ -8,6 +8,7 @@ export default function Board({
 	activeSquareIndex,
 	activeDirection,
 	toggleDirection,
+	convertInactiveSquareToActiveSquare,
 }: BoardProps) {
 	let highlightableRow: number
 	let highlightableColumn: number
@@ -34,6 +35,7 @@ export default function Board({
 				highlightableRow={highlightableRow}
 				highlightableColumn={highlightableColumn}
 				toggleDirection={toggleDirection}
+				convertInactiveSquareToActiveSquare={convertInactiveSquareToActiveSquare}
 			/>
 		))
 		// return Object.values([]).map(el => <Square />)

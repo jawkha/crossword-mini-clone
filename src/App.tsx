@@ -10,7 +10,9 @@ import styles from './styles/App.module.css'
 
 export default function App() {
 	// To identify the first active square, we need to find the index of the first element in the array where answer is null.
-	const activeSquareIndex = puzzleData.findIndex(squareData => squareData.answer !== null)
+	const [activeSquareIndex, setActiveSquareIndex] = React.useState(
+		puzzleData.findIndex(squareData => squareData.answer !== null)
+	)
 	console.log({ activeSquareIndex })
 	const [activeSquare, setActiveSquare] = React.useState(puzzleData[activeSquareIndex])
 	// If the direction is across, the row and its associated clue will be highlighted. If down, then column.
@@ -22,8 +24,6 @@ export default function App() {
 	)
 	const [userAnswers, setUserAnswers] = React.useState<string[]>([...Array(puzzleData.length)])
 	const [timer, setTimer] = React.useState(0)
-
-	console.log({ activeSquareIndex, activeSquare, activeDirection, directionalClue, activeClue })
 
 	let timerId: NodeJS.Timeout
 
@@ -42,6 +42,20 @@ export default function App() {
 		const newDirection = activeDirection === 'across' ? 'down' : 'across'
 		setActiveDirection(newDirection)
 	}
+
+	const convertInactiveSquareToActiveSquare = (clickedSquare: SquareData) => {
+		setActiveSquareIndex(
+			puzzleData.findIndex(
+				square => square.row === clickedSquare.row && square.column === clickedSquare.column
+			)
+		)
+	}
+
+	React.useEffect(() => {
+		setActiveSquare(puzzleData[activeSquareIndex])
+		setDirectionalClue(activeSquare[activeDirection])
+		setActiveClue((clues as CluesProps['clues'])[activeDirection][directionalClue!])
+	}, [activeSquareIndex, activeSquare, activeDirection, directionalClue])
 
 	React.useEffect(() => {
 		timerId = setInterval(() => {
@@ -71,6 +85,7 @@ export default function App() {
 						activeSquareIndex={activeSquareIndex}
 						activeDirection={activeDirection}
 						toggleDirection={toggleDirection}
+						convertInactiveSquareToActiveSquare={convertInactiveSquareToActiveSquare}
 					/>
 				</div>
 				<div>

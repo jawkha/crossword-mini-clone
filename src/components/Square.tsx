@@ -9,12 +9,16 @@ export default function Square({
 	highlightableRow,
 	highlightableColumn,
 	toggleDirection,
+	convertInactiveSquareToActiveSquare,
 }: SquareProps) {
 	const handleClickInsideActiveSquare = () => toggleDirection()
-	const handleClickInsideInactiveSquare = () => {}
+	const handleClickInsideInactiveSquare = (
+		e: React.MouseEvent<HTMLElement>,
+		squareData: SquareProps['squareData']
+	) => convertInactiveSquareToActiveSquare(squareData)
 
-	const handleClick = () =>
-		isActive ? handleClickInsideActiveSquare() : handleClickInsideInactiveSquare()
+	const handleClick = (e: React.MouseEvent<HTMLElement>) =>
+		isActive ? handleClickInsideActiveSquare() : handleClickInsideInactiveSquare(e, squareData)
 
 	return (
 		<div className={`${styles.square}`}>
