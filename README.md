@@ -34,10 +34,10 @@ When the app loads, the following should happen:
 
 **press a key**
 
-- 🟩 **_if the key is not an arrow or space key_**, the currently active square is filled with a
+- ✅ **_if the key is not an arrow or space key_**, the currently active square is filled with a
   capitalized character corresponding to the pressed key and
-  - 🟩 the next square in row or column based on the active direction becomes active.
-  - 🟩 if the active square is the last square in the given row or column, the same square remains
+  - ✅ the next fillable empty square in row or column based on the active direction becomes active.
+  - ✅ if the active square is the last square in the given row or column, the same square remains
     active.
 - 🟩 **_if the pressed key is an arrow key_**, then the result of the key press depends on the
   current active direction and the type of the arrow key.

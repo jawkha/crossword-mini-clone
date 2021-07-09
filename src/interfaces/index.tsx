@@ -16,6 +16,9 @@ export interface BoardProps {
 	activeDirection: 'across' | 'down'
 	toggleDirection: () => void
 	convertInactiveSquareToActiveSquare: (clickedSquare: SquareData) => void
+	inputUserGuess: (e: React.KeyboardEvent<HTMLInputElement>) => void
+	userAnswers: (string | null)[]
+	convertNextSquareToActiveSquare: () => void
 }
 
 export interface SquareProps {
@@ -26,6 +29,9 @@ export interface SquareProps {
 	highlightableColumn: number
 	toggleDirection: () => void
 	convertInactiveSquareToActiveSquare: (clickedSquare: SquareData) => void
+	inputUserGuess: (e: React.KeyboardEvent<HTMLInputElement>) => void
+	userGuess: string | null
+	convertNextSquareToActiveSquare: () => void
 }
 
 export interface CluesProps {

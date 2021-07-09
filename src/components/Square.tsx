@@ -10,6 +10,9 @@ export default function Square({
 	highlightableColumn,
 	toggleDirection,
 	convertInactiveSquareToActiveSquare,
+	inputUserGuess,
+	userGuess,
+	convertNextSquareToActiveSquare,
 }: SquareProps) {
 	const handleClickInsideActiveSquare = () => toggleDirection()
 	const handleClickInsideInactiveSquare = (
@@ -20,17 +23,23 @@ export default function Square({
 	const handleClick = (e: React.MouseEvent<HTMLElement>) =>
 		isActive ? handleClickInsideActiveSquare() : handleClickInsideInactiveSquare(e, squareData)
 
+	const handleChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		inputUserGuess(e)
+		convertNextSquareToActiveSquare()
+	}
+
 	return (
 		<div className={`${styles.square}`}>
 			<span className={styles.number}>{squareData.displayedNumber}</span>
 			<input
+				id={`${squareData.row}${squareData.column}`}
 				type='text'
 				maxLength={1}
+				value={userGuess ? userGuess.toUpperCase() : ''}
+				disabled={!squareData.answer}
 				autoFocus={isActive}
-				onFocus={() => {}}
-				onBlur={() => {}}
 				onClick={handleClick}
-				onChange={() => {}}
+				onInput={handleChange}
 				className={`${styles.input} ${isActive ? styles.active : ''} ${
 					squareData.answer ? styles.fillable : styles.unfillable
 				} ${
