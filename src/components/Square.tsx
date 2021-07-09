@@ -20,12 +20,17 @@ export default function Square({
 	const handleClick = (e: React.MouseEvent<HTMLElement>) =>
 		isActive ? handleClickInsideActiveSquare() : handleClickInsideInactiveSquare(e, squareData)
 
+	// const handleChange = (e: React.ChangeEvent<HTMLElement>) => {
+	// 	console.log({ squareData })
+	// }
+
 	return (
 		<div className={`${styles.square}`}>
 			<span className={styles.number}>{squareData.displayedNumber}</span>
 			<input
 				type='text'
 				maxLength={1}
+				disabled={!squareData.answer}
 				autoFocus={isActive}
 				onFocus={() => {}}
 				onBlur={() => {}}
