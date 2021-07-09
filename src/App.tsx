@@ -55,8 +55,45 @@ export default function App() {
 		)
 	}
 
+	const inputUserGuess = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		const answersCopy = [...userAnswers]
+		answersCopy[activeSquareIndex] = (e.target as HTMLInputElement).value
+		setUserAnswers(answersCopy)
+	}
+
+	const convertNextSquareToActiveSquare = () => {
+		if (activeDirection === 'across') {
+			// setActiveSquareIndex(
+			// 	puzzleData[activeSquareIndex + 1] ? activeSquareIndex + 1 : activeSquareIndex
+			// )
+			const nextFillableSquareIndex = puzzleData.findIndex(
+				(squareData, index) =>
+					index > activeSquareIndex &&
+					squareData.answer !== null &&
+					squareData.row === activeSquare.row &&
+					userAnswers[index] === ''
+			)
+			setActiveSquareIndex(
+				nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex
+			)
+		}
+		if (activeDirection === 'down') {
+			const nextFillableSquareIndex = puzzleData.findIndex(
+				(squareData, index) =>
+					index > activeSquareIndex &&
+					squareData.answer !== null &&
+					squareData.column === activeSquare.column &&
+					userAnswers[index] === ''
+			)
+			setActiveSquareIndex(
+				nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex
+			)
+		}
+	}
+
 	React.useEffect(() => {
 		setActiveSquare(puzzleData[activeSquareIndex])
+		document.getElementById(`${activeSquare.row}${activeSquare.column}`)?.focus()
 		setDirectionalClue(activeSquare[activeDirection])
 		setActiveClue((clues as CluesProps['clues'])[activeDirection][directionalClue!])
 	}, [activeSquareIndex, activeSquare, activeDirection, directionalClue])
@@ -90,6 +127,9 @@ export default function App() {
 						activeDirection={activeDirection}
 						toggleDirection={toggleDirection}
 						convertInactiveSquareToActiveSquare={convertInactiveSquareToActiveSquare}
+						inputUserGuess={inputUserGuess}
+						userAnswers={userAnswers}
+						convertNextSquareToActiveSquare={convertNextSquareToActiveSquare}
 					/>
 				</div>
 				<div>

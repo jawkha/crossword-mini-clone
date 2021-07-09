@@ -9,6 +9,9 @@ export default function Board({
 	activeDirection,
 	toggleDirection,
 	convertInactiveSquareToActiveSquare,
+	inputUserGuess,
+	userAnswers,
+	convertNextSquareToActiveSquare,
 }: BoardProps) {
 	let highlightableRow: number
 	let highlightableColumn: number
@@ -36,9 +39,11 @@ export default function Board({
 				highlightableColumn={highlightableColumn}
 				toggleDirection={toggleDirection}
 				convertInactiveSquareToActiveSquare={convertInactiveSquareToActiveSquare}
+				inputUserGuess={inputUserGuess}
+				userGuess={userAnswers[index]}
+				convertNextSquareToActiveSquare={convertNextSquareToActiveSquare}
 			/>
 		))
-		// return Object.values([]).map(el => <Square />)
 	}
 
 	return <div className={styles.board}>{renderGrid()}</div>
