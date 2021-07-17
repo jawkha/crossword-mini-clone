@@ -57,15 +57,14 @@ export default function App() {
 
 	const inputUserGuess = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		const answersCopy = [...userAnswers]
-		answersCopy[activeSquareIndex] = (e.target as HTMLInputElement).value
+		// answersCopy[activeSquareIndex] = (e.target as HTMLInputElement).value
+		// answersCopy[activeSquareIndex] = e.key === ' ' ? '' : e.key
+		answersCopy[activeSquareIndex] = e.key
 		setUserAnswers(answersCopy)
 	}
 
 	const convertNextSquareToActiveSquare = () => {
 		if (activeDirection === 'across') {
-			// setActiveSquareIndex(
-			// 	puzzleData[activeSquareIndex + 1] ? activeSquareIndex + 1 : activeSquareIndex
-			// )
 			const nextFillableSquareIndex = puzzleData.findIndex(
 				(squareData, index) =>
 					index > activeSquareIndex &&
