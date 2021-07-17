@@ -64,30 +64,16 @@ export default function App() {
 	}
 
 	const convertNextSquareToActiveSquare = () => {
-		if (activeDirection === 'across') {
-			const nextFillableSquareIndex = puzzleData.findIndex(
-				(squareData, index) =>
-					index > activeSquareIndex &&
-					squareData.answer !== null &&
-					squareData.row === activeSquare.row &&
-					userAnswers[index] === ''
-			)
-			setActiveSquareIndex(
-				nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex
-			)
-		}
-		if (activeDirection === 'down') {
-			const nextFillableSquareIndex = puzzleData.findIndex(
-				(squareData, index) =>
-					index > activeSquareIndex &&
-					squareData.answer !== null &&
-					squareData.column === activeSquare.column &&
-					userAnswers[index] === ''
-			)
-			setActiveSquareIndex(
-				nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex
-			)
-		}
+		const nextFillableSquareIndex = puzzleData.findIndex(
+			(squareData, index) =>
+				index > activeSquareIndex &&
+				squareData.answer !== null &&
+				(activeDirection === 'across'
+					? squareData.row === activeSquare.row
+					: squareData.column === activeSquare.column) &&
+				userAnswers[index] === ''
+		)
+		setActiveSquareIndex(nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex)
 	}
 
 	React.useEffect(() => {
