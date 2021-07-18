@@ -57,38 +57,43 @@ export default function App() {
 
 	const inputUserGuess = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		const answersCopy = [...userAnswers]
-		answersCopy[activeSquareIndex] = (e.target as HTMLInputElement).value
+		// answersCopy[activeSquareIndex] = (e.target as HTMLInputElement).value
+		// answersCopy[activeSquareIndex] = e.key === ' ' ? '' : e.key
+		answersCopy[activeSquareIndex] = e.key
 		setUserAnswers(answersCopy)
 	}
 
 	const convertNextSquareToActiveSquare = () => {
-		if (activeDirection === 'across') {
-			// setActiveSquareIndex(
-			// 	puzzleData[activeSquareIndex + 1] ? activeSquareIndex + 1 : activeSquareIndex
-			// )
-			const nextFillableSquareIndex = puzzleData.findIndex(
-				(squareData, index) =>
-					index > activeSquareIndex &&
-					squareData.answer !== null &&
-					squareData.row === activeSquare.row &&
-					userAnswers[index] === ''
-			)
-			setActiveSquareIndex(
-				nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex
-			)
-		}
-		if (activeDirection === 'down') {
-			const nextFillableSquareIndex = puzzleData.findIndex(
-				(squareData, index) =>
-					index > activeSquareIndex &&
-					squareData.answer !== null &&
-					squareData.column === activeSquare.column &&
-					userAnswers[index] === ''
-			)
-			setActiveSquareIndex(
-				nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex
-			)
-		}
+		const nextFillableSquareIndex = puzzleData.findIndex(
+			(squareData, index) =>
+				index > activeSquareIndex &&
+				squareData.answer !== null &&
+				(activeDirection === 'across'
+					? squareData.row === activeSquare.row
+					: squareData.column === activeSquare.column) &&
+				userAnswers[index] === ''
+		)
+		setActiveSquareIndex(nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex)
+	}
+
+	const convertLowerIndexedSquareToActiveSquare = () => {
+		const arrayOfIndices: number[] = []
+		puzzleData.forEach((squareData, index) => {
+			if (
+				activeSquareIndex > index &&
+				squareData.answer !== null &&
+				(activeDirection === 'across'
+					? squareData.row === activeSquare.row
+					: squareData.column === activeSquare.column) &&
+				userAnswers[index] === ''
+			) {
+				arrayOfIndices.push(index)
+			}
+		})
+		const lowerIndexedFillableSquareIndex = Math.max(...arrayOfIndices)
+		setActiveSquareIndex(
+			lowerIndexedFillableSquareIndex >= 0 ? lowerIndexedFillableSquareIndex : activeSquareIndex
+		)
 	}
 
 	React.useEffect(() => {
@@ -130,6 +135,7 @@ export default function App() {
 						inputUserGuess={inputUserGuess}
 						userAnswers={userAnswers}
 						convertNextSquareToActiveSquare={convertNextSquareToActiveSquare}
+						convertLowerIndexedSquareToActiveSquare={convertLowerIndexedSquareToActiveSquare}
 					/>
 				</div>
 				<div>

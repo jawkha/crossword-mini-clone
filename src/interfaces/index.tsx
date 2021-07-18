@@ -19,6 +19,7 @@ export interface BoardProps {
 	inputUserGuess: (e: React.KeyboardEvent<HTMLInputElement>) => void
 	userAnswers: (string | null)[]
 	convertNextSquareToActiveSquare: () => void
+	convertLowerIndexedSquareToActiveSquare: () => void
 }
 
 export interface SquareProps {
@@ -32,6 +33,7 @@ export interface SquareProps {
 	inputUserGuess: (e: React.KeyboardEvent<HTMLInputElement>) => void
 	userGuess: string | null
 	convertNextSquareToActiveSquare: () => void
+	convertLowerIndexedSquareToActiveSquare: () => void
 }
 
 export interface CluesProps {

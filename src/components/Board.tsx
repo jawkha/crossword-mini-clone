@@ -12,6 +12,7 @@ export default function Board({
 	inputUserGuess,
 	userAnswers,
 	convertNextSquareToActiveSquare,
+	convertLowerIndexedSquareToActiveSquare,
 }: BoardProps) {
 	let highlightableRow: number
 	let highlightableColumn: number
@@ -42,6 +43,7 @@ export default function Board({
 				inputUserGuess={inputUserGuess}
 				userGuess={userAnswers[index]}
 				convertNextSquareToActiveSquare={convertNextSquareToActiveSquare}
+				convertLowerIndexedSquareToActiveSquare={convertLowerIndexedSquareToActiveSquare}
 			/>
 		))
 	}
