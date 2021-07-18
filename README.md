@@ -39,13 +39,13 @@ When the app loads, the following should happen:
   - ✅ the next fillable empty square in row or column based on the active direction becomes active.
   - ✅ if the active square is the last square in the given row or column, the same square remains
     active.
-- 🟩 **_if the pressed key is an arrow key_**, then the result of the key press depends on the
+- ✅ **_if the pressed key is an arrow key_**, then the result of the key press depends on the
   current active direction and the type of the arrow key.
-  - 🟩 if the arrow key and the current active direction are the same, e.g. up or down arrow key
+  - ✅ if the arrow key and the current active direction are the same, e.g. up or down arrow key
     when the active direction is 'down' or left and right arrow keys when the active direction is
     across, then the key press results in the next square in the direction of the arrow key becoming
     active.
-  - 🟩 if the current active square is the last square in the active row or column, then the same
+  - ✅ if the current active square is the last square in the active row or column, then the same
     square remains active.
   - ✅ if the arrow key and the current active direction are not the same, then the key press
     results in the active direction getting toggled.
