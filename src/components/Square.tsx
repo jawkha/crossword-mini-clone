@@ -24,7 +24,7 @@ export default function Square({
 		isActive ? handleClickInsideActiveSquare() : handleClickInsideInactiveSquare(e, squareData)
 
 	const handleChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		// handle cases where the keypress is an a key which should have no output
+		// handle cases where the keypress is a key which should have no output
 		const inactiveKeys = [
 			'Shift',
 			'Enter',
@@ -55,19 +55,46 @@ export default function Square({
 		const specialKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Backspace', ' ']
 		if (specialKeys.includes(e.key)) {
 			console.log('special key pressed')
-			// perhaps use a switch statement to account for each key
+			/**
+		**_if the pressed key is an arrow key_**, then the result of the key press depends on the
+  		current active direction and the type of the arrow key.
+  - if the arrow key and the current active direction are the same, e.g. up or down arrow key
+    when the active direction is 'down' or left and right arrow keys when the active direction is
+    across, then the key press results in the next square in the direction of the arrow key becoming
+    active.
+  - if the current active square is the last square in the active row or column, then the same
+    square remains active.
+  - if the arrow key and the current active direction are not the same, then the key press
+    results in the active direction getting toggled.
+			 */
 			switch (e.key) {
 				case 'ArrowRight':
-					console.log(e.key)
+					if (activeDirection === 'down') {
+						toggleDirection()
+					} else {
+						console.log(e.key)
+					}
 					return
 				case 'ArrowLeft':
-					console.log(e.key)
+					if (activeDirection === 'down') {
+						toggleDirection()
+					} else {
+						console.log(e.key)
+					}
 					return
 				case 'ArrowUp':
-					console.log(e.key)
+					if (activeDirection === 'across') {
+						toggleDirection()
+					} else {
+						console.log(e.key)
+					}
 					return
 				case 'ArrowDown':
-					console.log(e.key)
+					if (activeDirection === 'across') {
+						toggleDirection()
+					} else {
+						console.log(e.key)
+					}
 					return
 				case 'Backspace':
 					console.log(e.key)
