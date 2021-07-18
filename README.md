@@ -47,7 +47,7 @@ When the app loads, the following should happen:
     active.
   - 🟩 if the current active square is the last square in the active row or column, then the same
     square remains active.
-  - 🟩 if the arrow key and the current active direction are not the same, then the key press
+  - ✅ if the arrow key and the current active direction are not the same, then the key press
     results in the active direction getting toggled.
 - 🟩 **_if the key pressed is the space bar_**, then the result depends on whether the currently
   active square is filled or not.

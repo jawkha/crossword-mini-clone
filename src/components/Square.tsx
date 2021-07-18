@@ -13,6 +13,7 @@ export default function Square({
 	inputUserGuess,
 	userGuess,
 	convertNextSquareToActiveSquare,
+	convertLowerIndexedSquareToActiveSquare,
 }: SquareProps) {
 	const handleClickInsideActiveSquare = () => toggleDirection()
 	const handleClickInsideInactiveSquare = (
@@ -73,6 +74,7 @@ export default function Square({
 						toggleDirection()
 					} else {
 						console.log(e.key)
+						convertNextSquareToActiveSquare()
 					}
 					return
 				case 'ArrowLeft':
@@ -80,6 +82,7 @@ export default function Square({
 						toggleDirection()
 					} else {
 						console.log(e.key)
+						convertLowerIndexedSquareToActiveSquare()
 					}
 					return
 				case 'ArrowUp':
@@ -87,6 +90,7 @@ export default function Square({
 						toggleDirection()
 					} else {
 						console.log(e.key)
+						convertLowerIndexedSquareToActiveSquare()
 					}
 					return
 				case 'ArrowDown':
@@ -94,6 +98,7 @@ export default function Square({
 						toggleDirection()
 					} else {
 						console.log(e.key)
+						convertNextSquareToActiveSquare()
 					}
 					return
 				case 'Backspace':

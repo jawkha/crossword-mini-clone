@@ -76,6 +76,26 @@ export default function App() {
 		setActiveSquareIndex(nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex)
 	}
 
+	const convertLowerIndexedSquareToActiveSquare = () => {
+		const arrayOfIndices: number[] = []
+		puzzleData.forEach((squareData, index) => {
+			if (
+				activeSquareIndex > index &&
+				squareData.answer !== null &&
+				(activeDirection === 'across'
+					? squareData.row === activeSquare.row
+					: squareData.column === activeSquare.column) &&
+				userAnswers[index] === ''
+			) {
+				arrayOfIndices.push(index)
+			}
+		})
+		const lowerIndexedFillableSquareIndex = Math.max(...arrayOfIndices)
+		setActiveSquareIndex(
+			lowerIndexedFillableSquareIndex >= 0 ? lowerIndexedFillableSquareIndex : activeSquareIndex
+		)
+	}
+
 	React.useEffect(() => {
 		setActiveSquare(puzzleData[activeSquareIndex])
 		document.getElementById(`${activeSquare.row}${activeSquare.column}`)?.focus()
@@ -115,6 +135,7 @@ export default function App() {
 						inputUserGuess={inputUserGuess}
 						userAnswers={userAnswers}
 						convertNextSquareToActiveSquare={convertNextSquareToActiveSquare}
+						convertLowerIndexedSquareToActiveSquare={convertLowerIndexedSquareToActiveSquare}
 					/>
 				</div>
 				<div>
