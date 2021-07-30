@@ -18,8 +18,8 @@ export interface BoardProps {
 	convertInactiveSquareToActiveSquare: (clickedSquare: SquareData) => void
 	inputUserGuess: (e: React.KeyboardEvent<HTMLInputElement>) => void
 	userAnswers: (string | null)[]
-	convertNextSquareToActiveSquare: () => void
-	convertLowerIndexedSquareToActiveSquare: () => void
+	convertNextSquareToActiveSquare: (specialCase?: 'specialKey') => void
+	convertLowerIndexedSquareToActiveSquare: (specialCase?: 'specialKey') => void
 }
 
 export interface SquareProps {
@@ -32,8 +32,8 @@ export interface SquareProps {
 	convertInactiveSquareToActiveSquare: (clickedSquare: SquareData) => void
 	inputUserGuess: (e: React.KeyboardEvent<HTMLInputElement>) => void
 	userGuess: string | null
-	convertNextSquareToActiveSquare: () => void
-	convertLowerIndexedSquareToActiveSquare: () => void
+	convertNextSquareToActiveSquare: (specialCase?: 'specialKey') => void
+	convertLowerIndexedSquareToActiveSquare: (specialCase?: 'specialKey') => void
 }
 
 export interface CluesProps {
