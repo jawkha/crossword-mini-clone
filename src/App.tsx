@@ -5,7 +5,7 @@ import ActiveClue from './components/ActiveClue'
 import Board from './components/Board'
 import Clues from './components/Clues'
 import { clues, puzzleData } from './data/puzzle-1'
-import { SquareData, CluesProps } from './interfaces'
+import { SquareData, CluesProps, SquareProps } from './interfaces'
 import styles from './styles/App.module.css'
 
 export default function App() {
@@ -63,38 +63,44 @@ export default function App() {
 		setUserAnswers(answersCopy)
 	}
 
-	const convertNextSquareToActiveSquare = () => {
-		const nextFillableSquareIndex = puzzleData.findIndex(
-			(squareData, index) =>
-				index > activeSquareIndex &&
-				squareData.answer !== null &&
-				(activeDirection === 'across'
-					? squareData.row === activeSquare.row
-					: squareData.column === activeSquare.column) &&
-				userAnswers[index] === ''
-		)
-		setActiveSquareIndex(nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex)
-	}
+	const convertNextSquareToActiveSquare: SquareProps['convertNextSquareToActiveSquare'] =
+		specialKey => {
+			const nextFillableSquareIndex = puzzleData.findIndex(
+				(squareData, index) =>
+					index > activeSquareIndex &&
+					squareData.answer !== null &&
+					(activeDirection === 'across'
+						? squareData.row === activeSquare.row
+						: squareData.column === activeSquare.column) &&
+					(specialKey === 'specialKey' ? true : userAnswers[index] === '')
+			)
+			console.log('nfsi', nextFillableSquareIndex)
+			setActiveSquareIndex(
+				nextFillableSquareIndex >= 0 ? nextFillableSquareIndex : activeSquareIndex
+			)
+		}
 
-	const convertLowerIndexedSquareToActiveSquare = () => {
-		const arrayOfIndices: number[] = []
-		puzzleData.forEach((squareData, index) => {
-			if (
-				activeSquareIndex > index &&
-				squareData.answer !== null &&
-				(activeDirection === 'across'
-					? squareData.row === activeSquare.row
-					: squareData.column === activeSquare.column) &&
-				userAnswers[index] === ''
-			) {
-				arrayOfIndices.push(index)
-			}
-		})
-		const lowerIndexedFillableSquareIndex = Math.max(...arrayOfIndices)
-		setActiveSquareIndex(
-			lowerIndexedFillableSquareIndex >= 0 ? lowerIndexedFillableSquareIndex : activeSquareIndex
-		)
-	}
+	const convertLowerIndexedSquareToActiveSquare: SquareProps['convertLowerIndexedSquareToActiveSquare'] =
+		specialKey => {
+			const arrayOfIndices: number[] = []
+			puzzleData.forEach((squareData, index) => {
+				if (
+					activeSquareIndex > index &&
+					squareData.answer !== null &&
+					(activeDirection === 'across'
+						? squareData.row === activeSquare.row
+						: squareData.column === activeSquare.column) &&
+					(specialKey === 'specialKey' ? true : userAnswers[index] === '')
+				) {
+					arrayOfIndices.push(index)
+				}
+			})
+			const lowerIndexedFillableSquareIndex = Math.max(...arrayOfIndices)
+			console.log('lifsi', lowerIndexedFillableSquareIndex)
+			setActiveSquareIndex(
+				lowerIndexedFillableSquareIndex >= 0 ? lowerIndexedFillableSquareIndex : activeSquareIndex
+			)
+		}
 
 	React.useEffect(() => {
 		setActiveSquare(puzzleData[activeSquareIndex])
@@ -107,7 +113,7 @@ export default function App() {
 		timerId = setInterval(() => {
 			setTimer(timer + 1)
 		}, 1000)
-		console.log(timerId)
+		// console.log(timerId)
 		return () => clearInterval(timerId)
 	})
 

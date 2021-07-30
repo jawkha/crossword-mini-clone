@@ -48,45 +48,40 @@ export default function Square({
 		]
 
 		if (inactiveKeys.includes(e.key)) {
-			console.log('inactive key pressed')
-			console.log(e.key)
+			console.log('inactive key pressed', e.key)
 			return
 		}
 		// handle cases where the keypress is an arrow key or a spacebar
 		const specialKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Backspace', ' ']
 		if (specialKeys.includes(e.key)) {
-			console.log('special key pressed')
+			console.log('special key pressed', e.key)
 			switch (e.key) {
 				case 'ArrowRight':
 					if (activeDirection === 'down') {
 						toggleDirection()
 					} else {
-						console.log(e.key)
-						convertNextSquareToActiveSquare()
+						convertNextSquareToActiveSquare('specialKey')
 					}
 					return
 				case 'ArrowLeft':
 					if (activeDirection === 'down') {
 						toggleDirection()
 					} else {
-						console.log(e.key)
-						convertLowerIndexedSquareToActiveSquare()
+						convertLowerIndexedSquareToActiveSquare('specialKey')
 					}
 					return
 				case 'ArrowUp':
 					if (activeDirection === 'across') {
 						toggleDirection()
 					} else {
-						console.log(e.key)
-						convertLowerIndexedSquareToActiveSquare()
+						convertLowerIndexedSquareToActiveSquare('specialKey')
 					}
 					return
 				case 'ArrowDown':
 					if (activeDirection === 'across') {
 						toggleDirection()
 					} else {
-						console.log(e.key)
-						convertNextSquareToActiveSquare()
+						convertNextSquareToActiveSquare('specialKey')
 					}
 					return
 				case 'Backspace':
@@ -97,7 +92,7 @@ export default function Square({
 					return
 			}
 		}
-		console.log(e)
+		// console.log(e)
 		// handle cases where a character is input into the field
 		inputUserGuess(e)
 		convertNextSquareToActiveSquare()
