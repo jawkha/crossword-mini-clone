@@ -66,6 +66,19 @@ export default function App() {
 	const convertNextSquareToActiveSquare: SquareProps['convertNextSquareToActiveSquare'] =
 		specialKey => {
 			const nextFillableSquareIndex = puzzleData.findIndex(
+				/**
+				 * the logic for finding the index of the next fillable square is as follows:
+    for arrow keys, we are using the following logic to select the next active square:
+    a. the index of the square should be higher than the currently active square
+    b. the square should be fillable
+    c. depending on the active direction, the square should be in the same row or column as the current active square
+    it does not matter whether the next square is empty or has previously been filled by the user
+    
+    for spacebar, the additional conditions are:
+    a. if the currently active square is empty, the next active square has to be empty as well
+    b. if the currently active square is already filled, then pressing the spacebar will delete its contents and move to the next square whether its empty or filled
+				 */
+
 				(squareData, index) =>
 					index > activeSquareIndex &&
 					squareData.answer !== null &&
