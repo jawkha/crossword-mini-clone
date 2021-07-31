@@ -21,7 +21,7 @@
 
 .highlighted {
 	composes: fillable;
-	background-color: rgba(14, 111, 248, 0.4);
+	background-color: #a7d8ff;
 }
 
 .unfillable {
@@ -31,7 +31,7 @@
 
 .active {
 	composes: fillable;
-	background-color: rgba(255, 255, 0, 0.4);
+	background-color: #ffda00;
 }
 
 .input {
@@ -39,4 +39,5 @@
 	height: inherit;
 	padding: 1px;
 	border-width: 1px;
+	outline: none;
 }
