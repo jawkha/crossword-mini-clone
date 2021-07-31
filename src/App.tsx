@@ -58,7 +58,7 @@ export default function App() {
 	const inputUserGuess = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		const answersCopy = [...userAnswers]
 		// answersCopy[activeSquareIndex] = (e.target as HTMLInputElement).value
-		answersCopy[activeSquareIndex] = e.key === ' ' ? '' : e.key
+		answersCopy[activeSquareIndex] = e.key === ' ' || e.key === 'Backspace' ? '' : e.key
 		// answersCopy[activeSquareIndex] = e.key
 		setUserAnswers(answersCopy)
 	}
@@ -107,7 +107,9 @@ export default function App() {
 					(activeDirection === 'across'
 						? squareData.row === activeSquare.row
 						: squareData.column === activeSquare.column) &&
-					(specialKey === SpecialKey.Arrow ? true : userAnswers[index] === '')
+					(specialKey === SpecialKey.Arrow || specialKey === SpecialKey.Backspace
+						? true
+						: userAnswers[index] === '')
 				) {
 					arrayOfIndices.push(index)
 				}
