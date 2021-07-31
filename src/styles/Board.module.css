@@ -1,5 +1,6 @@
 .board {
 	display: grid;
+	border: 2px solid black;
 	grid-template-columns: repeat(5, 5rem);
 	margin-right: 3rem;
 	margin-top: 0.5rem;
