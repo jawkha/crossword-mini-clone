@@ -9,6 +9,11 @@ export interface SquareData {
 }
 
 export type PuzzleData = SquareData[]
+export enum SpecialKey {
+	Arrow = 'Arrow',
+	Backspace = 'Backspace',
+	SpaceBar = 'SpaceBar',
+}
 
 export interface BoardProps {
 	puzzleData: PuzzleData
@@ -18,8 +23,8 @@ export interface BoardProps {
 	convertInactiveSquareToActiveSquare: (clickedSquare: SquareData) => void
 	inputUserGuess: (e: React.KeyboardEvent<HTMLInputElement>) => void
 	userAnswers: (string | null)[]
-	convertNextSquareToActiveSquare: (specialCase?: 'specialKey') => void
-	convertLowerIndexedSquareToActiveSquare: (specialCase?: 'specialKey') => void
+	convertNextSquareToActiveSquare: (specialCase?: SpecialKey) => void
+	convertLowerIndexedSquareToActiveSquare: (specialCase?: SpecialKey) => void
 }
 
 export interface SquareProps {
@@ -32,8 +37,8 @@ export interface SquareProps {
 	convertInactiveSquareToActiveSquare: (clickedSquare: SquareData) => void
 	inputUserGuess: (e: React.KeyboardEvent<HTMLInputElement>) => void
 	userGuess: string | null
-	convertNextSquareToActiveSquare: (specialCase?: 'specialKey') => void
-	convertLowerIndexedSquareToActiveSquare: (specialCase?: 'specialKey') => void
+	convertNextSquareToActiveSquare: (specialCase?: SpecialKey) => void
+	convertLowerIndexedSquareToActiveSquare: (specialCase?: SpecialKey) => void
 }
 
 export interface CluesProps {
