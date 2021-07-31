@@ -51,23 +51,27 @@ When the app loads, the following should happen:
     square remains active.
   - ✅ if the arrow key and the current active direction are not the same, then the key press
     results in the active direction getting toggled.
-- 🟩 **_if the key pressed is the space bar_**, then the result depends on whether the currently
+- ✅ **_if the key pressed is the space bar_**, then the result depends on whether the currently
   active square is filled or not.
-  - 🟩 if the currently active square is not filled, then pressing the space bar results in moving
+  - ✅ if the currently active square is not filled, then pressing the space bar results in moving
     to the next empty square in the active direction. If the next square is filled, it will be
     skipped over to move to the next empty square and making it the active square. If the currently
     active square is the last square in the given row or column, the first square for the given row
     or column becomes the next active square.
-  - 🟩 if the currently active square is filled, pressing the space bar will delete the character
+  - ✅ if the currently active square is filled, pressing the space bar will delete the character
     from it and move to the next square immediately after it in the given row or column. If the new
     active square is also already filled, then pressing the space bar will keep deleting the
     characters. However, if a given active square is filled but is the last one in a given row or
     column, then after deleting the character inside it, the new active square will be the first
     empty square in the given row or column. If there are no other empty squares, then the last
     square in the given row or column will remain active despite repeated presses of the space bar.
-  - 🟩 if the currently active square is empty, pressing the space bar will result in skipping over
+  - ✅ if the currently active square is empty, pressing the space bar will result in skipping over
     to the next empty square in the given row or column. If there are no other empty squares, then
     the same square will remain active despite repeated presses of the space bar.
+- ✅ **_if the key pressed is the backspace key_**, then each press of the key results in the
+  contents of the active square getting deleted and the next lower-indexed fillable square in the
+  same row or column becoming active. If the active square is the first square in the given row or
+  column, the contents are deleted but the same square remains active.
 
 **When all the squares are filled** then one of two things happens:
 
