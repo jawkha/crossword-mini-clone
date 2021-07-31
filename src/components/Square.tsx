@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SquareProps } from './../interfaces'
+import { SquareProps, SpecialKey } from './../interfaces'
 import styles from './../styles/Square.module.css'
 
 export default function Square({
@@ -60,35 +60,37 @@ export default function Square({
 					if (activeDirection === 'down') {
 						toggleDirection()
 					} else {
-						convertNextSquareToActiveSquare('specialKey')
+						convertNextSquareToActiveSquare(SpecialKey.Arrow)
 					}
 					return
 				case 'ArrowLeft':
 					if (activeDirection === 'down') {
 						toggleDirection()
 					} else {
-						convertLowerIndexedSquareToActiveSquare('specialKey')
+						convertLowerIndexedSquareToActiveSquare(SpecialKey.Arrow)
 					}
 					return
 				case 'ArrowUp':
 					if (activeDirection === 'across') {
 						toggleDirection()
 					} else {
-						convertLowerIndexedSquareToActiveSquare('specialKey')
+						convertLowerIndexedSquareToActiveSquare(SpecialKey.Arrow)
 					}
 					return
 				case 'ArrowDown':
 					if (activeDirection === 'across') {
 						toggleDirection()
 					} else {
-						convertNextSquareToActiveSquare('specialKey')
+						convertNextSquareToActiveSquare(SpecialKey.Arrow)
 					}
 					return
 				case 'Backspace':
 					console.log(e.key)
 					return
 				case ' ':
-					console.log(e.key)
+					console.log(e)
+					inputUserGuess(e)
+					convertNextSquareToActiveSquare(SpecialKey.SpaceBar)
 					return
 			}
 		}
