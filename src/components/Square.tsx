@@ -86,6 +86,8 @@ export default function Square({
 					return
 				case 'Backspace':
 					console.log(e.key)
+					inputUserGuess(e)
+					convertLowerIndexedSquareToActiveSquare(SpecialKey.Backspace)
 					return
 				case ' ':
 					console.log(e)
