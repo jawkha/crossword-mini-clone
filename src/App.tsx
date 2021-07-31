@@ -5,7 +5,7 @@ import ActiveClue from './components/ActiveClue'
 import Board from './components/Board'
 import Clues from './components/Clues'
 import { clues, puzzleData } from './data/puzzle-1'
-import { SquareData, CluesProps, SquareProps } from './interfaces'
+import { SquareData, CluesProps, SquareProps, SpecialKey } from './interfaces'
 import styles from './styles/App.module.css'
 
 export default function App() {
@@ -58,8 +58,8 @@ export default function App() {
 	const inputUserGuess = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		const answersCopy = [...userAnswers]
 		// answersCopy[activeSquareIndex] = (e.target as HTMLInputElement).value
-		// answersCopy[activeSquareIndex] = e.key === ' ' ? '' : e.key
-		answersCopy[activeSquareIndex] = e.key
+		answersCopy[activeSquareIndex] = e.key === ' ' ? '' : e.key
+		// answersCopy[activeSquareIndex] = e.key
 		setUserAnswers(answersCopy)
 	}
 
@@ -69,10 +69,14 @@ export default function App() {
 				(squareData, index) =>
 					index > activeSquareIndex &&
 					squareData.answer !== null &&
-					(activeDirection === 'across'
+					(activeDirection === 'across' // to ensure that the next square is from the currently active row or column
 						? squareData.row === activeSquare.row
 						: squareData.column === activeSquare.column) &&
-					(specialKey === 'specialKey' ? true : userAnswers[index] === '')
+					(specialKey === SpecialKey.Arrow || // when arrow keys are pressed, the next fillable square even if there's already input in it will be selected
+					(specialKey === SpecialKey.SpaceBar && // when spacebar is pressed and the current active square already has input in it, then the next fillable square whether it's empty or filled becomes active. when spacebar is pressed and the next fillable square is empty, it becomes the active square
+						(userAnswers[activeSquareIndex] !== '' || userAnswers[index] === ''))
+						? true
+						: userAnswers[index] === '')
 			)
 			console.log('nfsi', nextFillableSquareIndex)
 			setActiveSquareIndex(
@@ -90,7 +94,7 @@ export default function App() {
 					(activeDirection === 'across'
 						? squareData.row === activeSquare.row
 						: squareData.column === activeSquare.column) &&
-					(specialKey === 'specialKey' ? true : userAnswers[index] === '')
+					(specialKey === SpecialKey.Arrow ? true : userAnswers[index] === '')
 				) {
 					arrayOfIndices.push(index)
 				}
