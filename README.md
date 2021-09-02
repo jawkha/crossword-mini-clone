@@ -93,3 +93,8 @@ When the app loads, the following should happen:
 - 🟩 clicking Reveal displays a dropdown with options to reveal square, word, or puzzle
 - 🟩 clicking Check displays a dropdown with options for autocheck, square, word, or puzzle. When
   autocheck is activated, a square is highlighted as correct or incorrect as soon as it is filled.
+
+**_Clicking on a clue in the list_**
+
+- 🟩 clicking on a clue in the list should highlight the related row or column (depending on whether
+  the clue is from Across or Down) and the first empty fillable square should become active.
