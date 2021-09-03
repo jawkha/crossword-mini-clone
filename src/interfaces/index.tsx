@@ -42,6 +42,7 @@ export interface SquareProps {
 }
 
 export interface CluesProps {
+	puzzleData: PuzzleData
 	clues: {
 		across: {
 			[key: string]: string
@@ -52,15 +53,25 @@ export interface CluesProps {
 	}
 	activeClue: string
 	activeSquare: SquareData
+	setActiveSquareIndex: React.Dispatch<React.SetStateAction<number>>
+	// setActiveSquare: React.Dispatch<React.SetStateAction<SquareData>>
+	setActiveDirection: React.Dispatch<React.SetStateAction<'across' | 'down'>>
+	setDirectionalClue: React.Dispatch<React.SetStateAction<number | null>>
+	setActiveClue: React.Dispatch<React.SetStateAction<string>>
 }
 
 export interface CluesListProps {
-	direction: string
+	puzzleData: PuzzleData
+	direction: 'across' | 'down'
 	directionalClues: {
 		[key: string]: string
 	}
 	activeClue: string
 	activeSquare: SquareData
+	setActiveSquareIndex: React.Dispatch<React.SetStateAction<number>>
+	setActiveDirection: React.Dispatch<React.SetStateAction<'across' | 'down'>>
+	setDirectionalClue: React.Dispatch<React.SetStateAction<number | null>>
+	setActiveClue: React.Dispatch<React.SetStateAction<string>>
 }
 
 export interface TimerProps {
