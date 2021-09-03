@@ -9,7 +9,7 @@ import { SquareData, CluesProps, SquareProps, SpecialKey } from './interfaces'
 import styles from './styles/App.module.css'
 
 export default function App() {
-	// To identify the first active square, we need to find the index of the first element in the array where answer is null.
+	// To identify the first active square, we need to find the index of the first element in the array where answer is not null.
 	const [activeSquareIndex, setActiveSquareIndex] = React.useState(
 		puzzleData.findIndex(squareData => squareData.answer !== null)
 	)
@@ -164,7 +164,16 @@ export default function App() {
 					/>
 				</div>
 				<div>
-					<Clues clues={clues} activeClue={activeClue} activeSquare={activeSquare} />
+					<Clues
+						puzzleData={puzzleData}
+						clues={clues}
+						activeClue={activeClue}
+						setActiveSquareIndex={setActiveSquareIndex}
+						activeSquare={activeSquare}
+						setActiveDirection={setActiveDirection}
+						setDirectionalClue={setDirectionalClue}
+						setActiveClue={setActiveClue}
+					/>
 				</div>
 			</div>
 		</div>

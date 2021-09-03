@@ -7,16 +7,33 @@ import styles from './../styles/CluesList.module.css'
  */
 
 export default function CluesList({
+	puzzleData,
 	direction,
 	directionalClues,
 	activeClue,
 	activeSquare,
+	setActiveSquareIndex,
+	setActiveDirection,
+	setDirectionalClue,
+	setActiveClue,
 }: CluesListProps) {
+	function handleClick(clueDirection: 'across' | 'down', clueNumber: number, clueString: string) {
+		setActiveDirection(clueDirection)
+		setDirectionalClue(activeSquare[clueDirection])
+		const activeSquareIndex = puzzleData.findIndex(
+			squareData =>
+				squareData[direction] === clueNumber && squareData.displayedNumber === clueNumber
+		)
+		setActiveSquareIndex(activeSquareIndex)
+		console.log({ clueDirection, clueNumber, clueString, activeSquare })
+	}
+
 	function listItems() {
 		return Object.entries(directionalClues).map(([key, value], index) => (
 			<p
 				className={`${value === activeClue ? styles['highlighted-clue'] : null}`}
-				key={index}>{`${key} ${value}`}</p>
+				key={index}
+				onClick={() => handleClick(direction, +key, value)}>{`${key} ${value}`}</p>
 		))
 	}
 
