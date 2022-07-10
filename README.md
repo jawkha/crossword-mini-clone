@@ -1,4 +1,12 @@
-[New York Times Crossword Mini](https://www.nytimes.com/crosswords/game/mini)
+# NYT CROSSWORD MINI
+
+This is an attempt to re-create New York Times'
+[Crossword Mini](https://www.nytimes.com/crosswords/game/mini) in ReactJS using the most basic
+patterns, i.e. prop-drilling instead of using the `Context` API, `useState` instead of `useReducer`.
+This is expected to make it easier to follow for any beginner ReactJS users.
+
+The following functionality is being implemented: (Green squares with check marks indicate features
+that have been implemented. Blank green squares are features that are still on the to do list.)
 
 **A. APP LOAD EVENTS**
 
